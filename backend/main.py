@@ -75,7 +75,7 @@ def save_detection_to_db(*, source: str, cls: int, reason: str, confidence: floa
     cur = con.cursor()
     cur.execute("""
         INSERT INTO detections (timestamp, source, session_id, cls, reason, confidence, bbox, image_width, image_height, model_name)
-        VALUES (datetime('now','localtime'), ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (datetime('now'), ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         source,
         session_id,
