@@ -177,7 +177,7 @@ class HistoryManager {
   formatTimestamp(ts) {
     if (!ts) return '-';
     try {
-      const d = new Date(String(ts).replace(' ', 'T'));
+      const d = new Date(ts);
       if (isNaN(d.getTime())) return ts;
 
       return d.toLocaleString('id-ID', {
@@ -194,7 +194,7 @@ class HistoryManager {
 
   timeAgo(ts) {
     try {
-      const d = new Date(String(ts).replace(' ', 'T'));
+      const d = new Date(ts);
       if (isNaN(d.getTime())) return '';
       const diff = Date.now() - d.getTime();
       const mins = Math.floor(diff / 60000);
