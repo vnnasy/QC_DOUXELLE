@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Analysis | Douxelle QC</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="upload-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="donut-spinner"></div>
+            <h2>Douxelle QC</h2>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container upload-app">
+        <!-- Header -->
+        <header class="upload-header">
+            <a href="/" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Image Analysis</h1>
+            <div class="header-placeholder"></div>
+        </header>
+
+        <!-- Upload Area -->
+        <main class="upload-main">
+            <div class="upload-card">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <label for="fileInput" class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Select or Drop Image</h3>
+                    <p>Supports JPG, PNG (Max 5MB)</p>
+                    <div class="file-details" id="fileDetails"></div>
+                    <span class="browse-button">Browse Files</span>
+                </label>
+                
+                <!-- Preview Container -->
+                <div class="preview-container" id="previewContainer">
+                    <div class="image-wrapper">
+                        <img id="previewImage">
+                        <canvas id="resultCanvas"></canvas>
+                    </div>
+                    
+                    <!-- Results -->
+                    <div class="results-container" id="resultsContainer">
+                        <div class="result-card layak">
+                            <div class="result-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>LAYAK</h4>
+                                <div class="result-count" id="layakCount">0</div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card tidak-layak">
+                            <div class="result-icon">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>TIDAK LAYAK</h4>
+                                <div class="result-count" id="tidakLayakCount">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="analyzeBtn" class="analyze-button" disabled>
+                    <i class="fas fa-search"></i> Analyze Image
+                </button>
+                <button id="resetBtn" class="reset-button">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="/" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="detect-realtime" class="nav-item">
+            <i class="fas fa-camera"></i>
+            <span>Scan</span>
+        </a>
+        <a href="detect-upload" class="nav-item active">
+            <i class="fas fa-upload"></i>
+            <span>Upload</span>
+        </a>
+        <a href="history" class="nav-item">
+            <i class="fas fa-clock"></i>
+            <span>History</span>
+        </a>
+        <a href="about" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+        </a>
+    </nav>
+
+    <script src="assets/js/upload-detection.js?v=3"></script>
+
+</body>
+</html>

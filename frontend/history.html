@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History | Douxelle QC</title>
+
+  <!-- gunakan path absolute biar aman ketika route = /history -->
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="history-page">
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+      <div class="donut-spinner"></div>
+      <h2>Douxelle QC</h2>
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <main class="history-content">
+      <section class="history-section">
+        <div class="section-header">
+          <div class="header-title">
+            <i class="fas fa-history"></i>
+            <h2>Detection History</h2>
+          </div>
+
+          <div class="header-actions">
+            <button class="filter-btn" id="filterToggle">
+              <i class="fas fa-filter"></i>
+              Filter
+            </button>
+
+            <button class="export-btn" id="btnExport">
+              <i class="fas fa-download"></i>
+              Export
+            </button>
+
+            <button class="clear-btn" id="btnClearAll" title="Hapus semua riwayat">
+              <i class="fas fa-trash"></i>
+              Clear All
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Panel -->
+        <div class="filter-panel" id="filterPanel">
+          <div class="filter-grid">
+            <div class="filter-group">
+              <label>Source</label>
+              <select id="filterSource" class="modern-select">
+                <option value="">All Sources</option>
+                <option value="upload">Upload</option>
+                <option value="realtime">Realtime</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Status</label>
+              <select id="filterClass" class="modern-select">
+                <option value="">All Status</option>
+                <option value="0">Layak</option>
+                <option value="1">Tidak Layak</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Date From</label>
+              <input type="date" id="filterFrom" class="modern-input" />
+            </div>
+
+            <div class="filter-group">
+              <label>Date To</label>
+              <input type="date" id="filterTo" class="modern-input" />
+            </div>
+          </div>
+
+          <!-- filter actions -->
+          <div class="filter-actions">
+            <button class="apply-filter-btn" id="applyFilter">
+              <i class="fas fa-check"></i>
+              Apply Filters
+            </button>
+
+            <button class="reset-filter-btn" id="btnResetFilter" type="button">
+              <i class="fas fa-rotate-left"></i>
+              Reset
+            </button>
+
+            <button class="delete-filter-btn" id="btnClearFiltered" type="button" title="Hapus riwayat sesuai filter saat ini">
+              <i class="fas fa-trash"></i>
+              Hapus Sesuai Filter
+            </button>
+          </div>
+
+          <div class="filter-hint">
+            <small>
+              Tips: gunakan rentang tanggal + status + source, lalu klik <b>Hapus Sesuai Filter</b> untuk membersihkan data tertentu.
+            </small>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-icon total">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalCount">0</span>
+              <span class="stat-label">Total Detections</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon layak">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="layakCount">0</span>
+              <span class="stat-label">Layak</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon tidak-layak">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="tidakLayakCount">0</span>
+              <span class="stat-label">Tidak Layak</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- History Table -->
+        <div class="table-container">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Confidence</th>
+                <th>Reason</th>
+                <th class="actions-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <!-- skeleton / rows injected by JS -->
+              <tr class="skeleton-row">
+                <td><div class="skeleton"></div></td>
+                <td><div class="skeleton"></div></td>
+                <td><div class="skeleton"></div></td>
+                <td><div class="skeleton"></div></td>
+                <td><div class="skeleton"></div></td>
+                <td><div class="skeleton"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+          <button class="page-btn" id="prevPage">
+            <i class="fas fa-chevron-left"></i>
+            Prev
+          </button>
+          <span class="page-info" id="pageInfo">Page 1</span>
+          <button class="page-btn" id="nextPage">
+            Next
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-icon">
+            <i class="fas fa-inbox"></i>
+          </div>
+          <h3>No Detection History</h3>
+          <p>Start scanning or uploading images to see your history here</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Bottom Navigation (pakai route) -->
+  <nav class="bottom-nav">
+    <a href="/" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="/detect-realtime" class="nav-item">
+      <i class="fas fa-camera"></i>
+      <span>Scan</span>
+    </a>
+    <a href="/detect-upload" class="nav-item">
+      <i class="fas fa-upload"></i>
+      <span>Upload</span>
+    </a>
+    <a href="/history" class="nav-item active">
+      <i class="fas fa-clock"></i>
+      <span>History</span>
+    </a>
+    <a href="/about" class="nav-item">
+      <i class="fas fa-info-circle"></i>
+      <span>About</span>
+    </a>
+  </nav>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/history.js"></script>
+</body>
+</html>

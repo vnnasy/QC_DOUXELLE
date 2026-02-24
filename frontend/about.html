@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Douxelle QC</title>
+
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="about-page">
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+      <div class="donut-spinner"></div>
+      <h2>Douxelle QC</h2>
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <div class="app-container about-app">
+    <!-- Header -->
+    <header class="about-header">
+      <a href="/" class="back-button" title="Kembali ke Home">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>About</h1>
+      <div class="header-placeholder"></div>
+    </header>
+
+    <main class="about-content">
+      <!-- 1) Tentang Sistem -->
+      <section class="about-section">
+        <div class="section-header">
+          <i class="fas fa-circle-info"></i>
+          <h2>Tentang Sistem</h2>
+        </div>
+
+        <div class="section-content">
+          <p class="about-lead">
+            Douxelle QC adalah sistem quality control donat berbasis computer vision yang membantu inspeksi visual
+            secara otomatis dan konsisten. Sistem menyediakan dua mode penggunaan, yaitu Realtime Detection (kamera) dan
+            Upload Image (unggah gambar). Hasil deteksi menampilkan Status, Confidence, dan Reason,
+            serta tersimpan pada halaman History untuk kebutuhan pelacakan.
+          </p>
+
+          <div class="philosophy-grid">
+            <div class="philosophy-item">
+              <div class="philosophy-icon"><i class="fas fa-bolt"></i></div>
+              <h3>Realtime</h3>
+              <p>Deteksi langsung melalui kamera dengan pembaruan cepat.</p>
+            </div>
+
+            <div class="philosophy-item">
+              <div class="philosophy-icon"><i class="fas fa-image"></i></div>
+              <h3>Upload</h3>
+              <p>Analisis gambar statis untuk inspeksi yang fleksibel.</p>
+            </div>
+
+            <div class="philosophy-item">
+              <div class="philosophy-icon"><i class="fas fa-clock-rotate-left"></i></div>
+              <h3>History</h3>
+              <p>Rekap deteksi, filter data, ekspor, dan penghapusan riwayat.</p>
+            </div>
+
+            <div class="philosophy-item">
+              <div class="philosophy-icon"><i class="fas fa-shield-halved"></i></div>
+              <h3>Konsisten</h3>
+              <p>Output status + confidence untuk membantu keputusan QC.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2) Panduan Penggunaan -->
+      <section class="about-section">
+        <div class="section-header">
+          <i class="fas fa-book"></i>
+          <h2>Panduan Penggunaan</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Berikut adalah alur penggunaan sistem dari awal hingga melihat hasil deteksi di riwayat. Pengguna bisa memilih mode
+            kamera untuk inspeksi real-time atau unggah gambar untuk analisis citra. Setiap hasil deteksi akan menampilkan status
+            dan tingkat kepercayaan model.
+          </p>
+
+          <div class="howto-grid">
+            <div class="howto-card">
+              <div class="howto-number">1</div>
+              <div class="howto-body">
+                <h3>Buka Home</h3>
+                <p>Masuk ke halaman Home, lalu pilih fitur <b>Scan</b> (Realtime) atau <b>Upload</b>.</p>
+              </div>
+            </div>
+
+            <div class="howto-card">
+              <div class="howto-number">2</div>
+              <div class="howto-body">
+                <h3>Realtime Detection</h3>
+                <p>Izinkan akses kamera, lalu tekan tombol deteksi untuk memulai. Bounding box muncul saat objek terdeteksi.</p>
+              </div>
+            </div>
+
+            <div class="howto-card">
+              <div class="howto-number">3</div>
+              <div class="howto-body">
+                <h3>Upload Image</h3>
+                <p>Unggah file gambar, kemudian klik <b>Analyze</b>. Sistem menampilkan hasil dan ringkasan deteksi.</p>
+              </div>
+            </div>
+
+            <div class="howto-card">
+              <div class="howto-number">4</div>
+              <div class="howto-body">
+                <h3>Cek History</h3>
+                <p>Gunakan fitur <b>Filter</b>, <b>Export</b>, dan penghapusan riwayat (<b>Clear All</b> / sesuai filter).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-note">
+            <i class="fas fa-lightbulb"></i>
+            <span>
+              Tips: jika tampilan belum berubah setelah update, coba muat ulang halaman (refresh) atau tutup dan buka kembali browser.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3) Interpretasi Status & Confidence -->
+      <section class="about-section">
+        <div class="section-header">
+          <i class="fas fa-circle-check"></i>
+          <h2>Interpretasi Status & Confidence</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Output sistem terdiri dari <b>Status</b> dan <b>Confidence</b>. Status menunjukkan hasil akhir (Layak/Tidak Layak),
+            sedangkan confidence menunjukkan tingkat keyakinan model. Nilai confidence berguna sebagai pertimbangan tambahan,
+            terutama saat kondisi visual kurang ideal (pencahayaan rendah, blur, objek terhalang, atau sudut terlalu miring).
+          </p>
+
+          <div class="badge-row">
+            <span class="status-badge layak">LAYAK</span>
+            <span class="status-badge tidak-layak">TIDAK LAYAK</span>
+          </div>
+
+          <div class="mini-faq">
+            <div class="faq-item">
+              <h3>Kenapa confidence bisa kecil?</h3>
+              <p>Biasanya karena pencahayaan, blur, latar ramai, atau objek tidak tertangkap jelas pada frame.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>Apa fungsi “Reason”?</h3>
+              <p>Reason menjelaskan faktor yang mempengaruhi keputusan. Kolom Status sudah menunjukkan hasil akhirnya.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4) Tips & Troubleshooting -->
+      <section class="about-section">
+        <div class="section-header">
+          <i class="fas fa-screwdriver-wrench"></i>
+          <h2>Tips & Troubleshooting</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Jika terjadi kendala saat penggunaan, beberapa langkah berikut dapat membantu mempercepat penanganan masalah tanpa perlu
+            pengaturan teknis yang rumit.
+          </p>
+
+          <div class="mini-faq">
+            <div class="faq-item">
+              <h3>Realtime tidak mendeteksi / tidak ada bounding box</h3>
+              <p>Pastikan kamera sudah diizinkan, backend aktif, lalu coba refresh halaman sebelum mencoba kembali.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>History tidak muncul / belum ter-update</h3>
+              <p>Pastikan koneksi berjalan normal. Coba buka ulang halaman History atau refresh halaman.</p>
+            </div>
+          </div>
+
+          <div class="about-note subtle">
+            <i class="fas fa-circle-info"></i>
+            <span>
+              Catatan: halaman About berfokus pada panduan penggunaan. Detail teknis model dan API dapat didokumentasikan pada bagian implementasi sistem.
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="/" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="/detect-realtime" class="nav-item">
+      <i class="fas fa-camera"></i>
+      <span>Scan</span>
+    </a>
+    <a href="/detect-upload" class="nav-item">
+      <i class="fas fa-upload"></i>
+      <span>Upload</span>
+    </a>
+    <a href="/history" class="nav-item">
+      <i class="fas fa-clock"></i>
+      <span>History</span>
+    </a>
+    <a href="/about" class="nav-item active">
+      <i class="fas fa-info-circle"></i>
+      <span>About</span>
+    </a>
+  </nav>
+
+  <script src="/assets/js/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const loading = document.getElementById('loadingScreen');
+      if (!loading) return;
+      setTimeout(() => {
+        loading.style.opacity = '0';
+        setTimeout(() => (loading.style.display = 'none'), 400);
+      }, 500);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Scan | Douxelle QC</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="realtime-page">
+    <!-- Camera View -->
+    <div class="camera-container">
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas"></canvas>
+        
+        <!-- Minimal Floating UI -->
+        <div class="scan-ui">
+            <!-- Performance Stats -->
+            <div class="performance-stats">
+                <div class="stat">
+                    <span id="fps">0</span>
+                    <small>FPS</small>
+                </div>
+                <div class="stat">
+                    <span id="inference-time">0</span>
+                    <small>MS</small>
+                </div>
+            </div>
+            
+            <!-- Detection Results -->
+            <div class="detection-results">
+                <div class="result-badge layak">
+                    <span id="layak-count">0</span>
+                    <small>LAYAK</small>
+                </div>
+                <div class="result-badge tidak-layak">
+                    <span id="tidak-layak-count">0</span>
+                    <small>TIDAK LAYAK</small>
+                </div>
+            </div>
+            
+            <!-- Control Button -->
+            <button id="toggle-detection" class="scan-button">
+                <i class="fas fa-pause" id="scan-icon"></i>
+            </button>
+        </div>
+        
+        <!-- Loading Indicator -->
+        <div class="loading-indicator" id="loadingIndicator">
+            <div class="pulse-animation"></div>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="/" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="detect-realtime" class="nav-item active">
+            <i class="fas fa-camera"></i>
+            <span>Scan</span>
+        </a>
+        <a href="detect-upload" class="nav-item">
+            <i class="fas fa-upload"></i>
+            <span>Upload</span>
+        </a>
+        <a href="history" class="nav-item">
+            <i class="fas fa-clock"></i>
+            <span>History</span>
+        </a>
+        <a href="about" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+        </a>
+    </nav>
+
+    <script src="assets/js/realtime-detection.js"></script>
+</body>
+</html>
