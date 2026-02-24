@@ -73,10 +73,12 @@ def save_detection_to_db(*, source: str, cls: int, reason: str, confidence: floa
                          bbox, image_size: dict, session_id: str | None, model_name: str):
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
+    timestamp = datetime.utcnow().isoformat() + "Z"
     cur.execute("""
         INSERT INTO detections (timestamp, source, session_id, cls, reason, confidence, bbox, image_width, image_height, model_name)
-        VALUES (datetime('now'), ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
+        timestamp,
         source,
         session_id,
         int(cls),
